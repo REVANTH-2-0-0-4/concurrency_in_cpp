@@ -1,0 +1,1 @@
+the image shown in the image.png is to show that shared_state program written is not correct( and could lead to race conditions) for that we have to use mutexes , mutex meaning mutual exclusion in the sense that only one thread gets an exclusive access at a time , through which we are going to get the synchronisation done and that is how we avoid race conditions 

@@ -1,0 +1,13 @@
+while working with the multiple threads , we may often forget to join the threads separately , or feel it as a difficult thing to do it again and again in case of those threads , so one way to avoid this burden is using jthreads , a feature provided by the cpp , the j threads , when ever the jthread goes out of the scope, the threads destructor is called , the destructor , does the following things 
+destructor(){
+   if(joinable){
+   	request_stop();
+	join();
+   }
+}
+which means it checks if thread is joinable ( which essentially means if there is anything that thread has to do is pending) then it joins it ( forget about request stop , it is just a reminder to stop executing , used in case of threads are blocking )
+
+
+// this is multiple threads executing concurrently 
+// next comes ,multiple threads executing concurrently with some shared state , for which we have to implement the mutex locks , and  in the sense have to prevent the race condition --> next video
+
