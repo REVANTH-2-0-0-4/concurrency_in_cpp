@@ -17,7 +17,9 @@ int main(){
     // must wait on work  , done by the working thread 
     thread reporter([&]{
         unique_lock<mutex> lock(glock);
-        gconditionvariable.wait(lock, [&]{ return notified; });
+        if(!notified){
+            gconditionvariable.wait(lock);
+        }
         cout<<"Reporter  , result is : "<<result<<endl;
     });
 
@@ -44,3 +46,6 @@ int main(){
 
     return 0;
 }
+
+// condition variable is a special feature provided by the cpp , which is used to avoid the overhead associated with the all the threads other than the one which is accessing the crirical section 
+// continously asking whether it got a lock or not  , insted of the threads continously checking for lock which burns cycles , what happens is the condition variable notifies the next thread , when the current thread , finishes its execution 
