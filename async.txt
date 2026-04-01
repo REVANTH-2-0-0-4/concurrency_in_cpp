@@ -1,0 +1,21 @@
+async -- without synchronisation 
+thisi is something that is also used in other programming languages like javascript , java(promise ) 
+it basiucally means we can lauch a thread , and we wont be blocked on that thread  we can go execute wherever it wants but the key idea is eventyally we might need a result from that thread later in our program , and if we need some synchronisation , we can  wait a thread
+
+
+#include<iostream>
+#include<future>     // this future  class provides a machanism to access  the results of the async operation 
+using namespace std;
+int square(int x){
+	return x*x;
+}
+int main(){
+	future<int> asyncfunciton = async(&async,12);
+	for(int i = 0 ; i < 10 ; i++){
+		cout<<square(i)<<endl;
+	}
+	// we are blocked at the get() operation until out result has computed otherwise we would need to wait here 
+	int result = asyncfunction.get();
+	cout<<"result is : "<<result<<endl;
+return 0;
+}
